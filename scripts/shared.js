@@ -1,22 +1,11 @@
 // =====================================
-// HEADER & FOOTER
+// URL NORMALIZATION (Netlify & GitHub Compatibility)
 // =====================================
 
-fetch("/assets/header.html")
-    .then(res => res.text())
-    .then(data => {
-        const header = document.getElementById("header");
-        if (header) header.innerHTML = data;
-    });
-
-fetch("/assets/footer.html")
-    .then(res => res.text())
-    .then(data => {
-        const footer = document.getElementById("footer");
-        if (footer) footer.innerHTML = data;
-    });
-
-// Helper function to safely compare URLs across environments
+/**
+ * Strips extensions and trailing slashes to ensure safe route comparison
+ * across different hosting environments (Localhost, GitHub Pages, Netlify).
+ */
 function normalizePath(path) {
     return path
         .toLowerCase()
@@ -25,15 +14,99 @@ function normalizePath(path) {
 }
 
 // =====================================
-// SIDEBAR
+// ACTIVE PAGE HIGHLIGHTING
 // =====================================
 
-const sidebar = document.getElementById("sidebar");
+function highlightCurrentPage() {
+    const currentPath = normalizePath(location.pathname);
 
-function renderSidebar() {
-    if (!sidebar || !window.advancedTallyCourse) return;
+    // Matches any hardcoded sidebar anchor links to the current browser route
+    document
+        .querySelectorAll("#sidebar a")
+        .forEach(link => {
+            try {
+                const url = new URL(link.href);
+                
+                if (normalizePath(url.pathname) === currentPath) {
+                    link.classList.add("active");
 
-    let html = "";
+                    // Expand the parent accordion component if collapsed
+                    const details = link.closest("details");
+                    if (details) {
+                        details.open = true;
+                    }
+                }
+            } catch (e) {
+                console.error("Error parsing link URL:", e);
+            }
+        });
+}
+
+// =====================================
+// TOPIC TITLE INJECTION
+// =====================================
+
+function setTopicTitle() {
+    const h1 = document.getElementById("topicTitle");
+    if (!h1) return;
+
+    // Plucks the final URL segment, cleans extensions, and restores readable text spaces
+    const title = location.pathname
+        .split("/")
+        .pop()
+        .replace(".html", "")
+        .replaceAll("-", " ");
+
+    h1.textContent = title;
+}
+
+// =====================================
+// MOBILE NAVIGATION TOGGLE
+// =====================================
+
+function initMobileNavigation() {
+    const nav = document.getElementById("sidebar");
+    const navToggle = document.getElementById("navToggle");
+    const overlay = document.getElementById("navOverlay");
+
+    if (!nav || !navToggle) return;
+
+    // Toggle drawer menu layout and dark background overlay
+    navToggle.onclick = e => {
+        e.stopPropagation();
+        nav.classList.toggle("active");
+        if (overlay) overlay.classList.toggle("active");
+    };
+
+    // Close menu instantly if background dim overlay is tapped
+    if (overlay) {
+        overlay.onclick = () => {
+            nav.classList.remove("active");
+            overlay.classList.remove("active");
+        };
+    }
+
+    // Safety click-away document interceptor 
+    document.addEventListener("click", e => {
+        const inside = nav.contains(e.target);
+        const toggle = navToggle.contains(e.target);
+
+        if (!inside && !toggle) {
+            nav.classList.remove("active");
+            if (overlay) overlay.classList.remove("active");
+        }
+    });
+}
+
+// =====================================
+// APPLICATION INITIALIZATION
+// =====================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    highlightCurrentPage();
+    setTopicTitle();
+    initMobileNavigation();
+});
 
     advancedTallyCourse.forEach(module => {
         html += `

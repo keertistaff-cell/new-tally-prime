@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Tally Prime Course</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div class="back">
+        <a href="/index.html">
+            <i class="fa-regular fa-house"></i>
+        </a>
+    </div>
+
+    <div class="container" id="courseModules"></div>
+
+    <div id="footer"></div>
+
+    <script src="/scripts/course-data.js"></script>
+    <script src="/scripts/script.js"></script>
+
+    <script>
+        const container = document.getElementById("courseModules");
+
+        advancedTallyCourse.forEach(module => {
+
+            const details = document.createElement("details");
+
+            let topics = "";
+
+            module.topics.forEach(topic => {
+
+                topics += `
+                    <li>
+                        <a href="/advance-tally/${module.folder}/${topic}.html">
+                            ${topic.replaceAll("-", " ")}
+                        </a>
+                    </li>
+                `;
+            });
+
+            details.innerHTML = `
+                <summary>${module.module}</summary>
+                <ul>
+                    ${topics}
+                </ul>
+            `;
+
+            container.appendChild(details);
+
+        });
+    </script>
+
+</body>
+</html>

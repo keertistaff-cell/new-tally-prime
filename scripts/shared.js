@@ -16,7 +16,14 @@ fetch("/assets/footer.html")
         if (footer) footer.innerHTML = data;
     });
 
+function normalizePath(path) {
 
+    return path
+        .toLowerCase()
+        .replace(".html", "")
+        .replace(/\/$/, "");
+
+}
 // =====================================
 // SIDEBAR
 // =====================================

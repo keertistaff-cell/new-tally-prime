@@ -107,14 +107,14 @@ header {
   position: relative;
   background: var(--header-gradient);
   color: var(--bg-white);
-  padding: 60px 20px;
+  padding: 6px 20px;
   text-align: center;
 }
 
 header h1 {
   font-size: 2.4rem;
   font-weight: 700;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 header .tagline {

@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topic</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head><body><header class="header-container">
+    <div class="logo">Notes to HTML</div>
+</header><div class="sidebar-container">
+    <nav>
+        <ul>
+            <li>Introduction</li>
+            <li>Concept</li>
+            <li>Examples</li>
+            <li>TallyPrime Procedure</li>
+            <li>Reporting</li>
+        </ul>
+    </nav>
+</div><main class="main-container"><h1 id="topicTitle"></h1><div class="navigation-container">
+    <span>Home</span> / <span>GST Supply Classification</span>
+</div><!-- Topic Content Here --><h2>Detailed Concept & Legal Logic under GST</h2><p>
+Under the Goods and Services Tax (GST) framework, transactions may involve multiple goods,
+services, or a combination of both. GST classifies such transactions into two categories:
+Composite Supply and Mixed Supply.
+</p><p>
+Correct identification of these supplies determines the applicable GST rate, reporting method,
+and tax calculation.
+</p><div class="info-box">
+Composite Supply is taxed according to the Principal Supply rate, while Mixed Supply is taxed
+at the highest GST rate applicable among all items in the bundle.
+</div><h2>Difference Between Composite Supply and Mixed Supply</h2><div class="table-responsive">
+<table>
+<tr>
+<th>Attribute</th>
+<th>Composite Supply</th>
+<th>Mixed Supply</th>
+</tr><tr>
+<td>Legal Definition</td>
+<td>Two or more naturally bundled supplies supplied together in ordinary business practice.</td>
+<td>Two or more independent supplies combined together for a single price without being a composite supply.</td>
+</tr><tr>
+<td>Nature of Bundle</td>
+<td>Naturally bundled with one Principal Supply and supporting supplies.</td>
+<td>Artificially bundled items that can be sold separately.</td>
+</tr><tr>
+<td>Pricing</td>
+<td>May have individual prices or a combined price.</td>
+<td>Always supplied for one consolidated price.</td>
+</tr><tr>
+<td>Tax Rate</td>
+<td>Principal Supply GST rate applies to the entire value.</td>
+<td>Highest GST rate among all items applies to the entire value.</td>
+</tr></table>
+</div><h2>Composite Supply Examples</h2><h3>1. Machinery Sale with Freight and Transit Insurance</h3><p>
+A manufacturer sells machinery worth ₹1,00,000 and charges mandatory freight and insurance
+of ₹5,000.
+</p><p>
+Freight and insurance are dependent on the machinery supply and cannot exist independently.
+Therefore, machinery is the Principal Supply.
+</p><div class="example-box">
+<h3>Tax Treatment</h3>
+<p>
+Entire value of ₹1,05,000 is taxed at the machinery GST rate of 18%.
+</p>
+</div><h3>2. Hotel Stay with Complimentary Breakfast</h3><p>
+A hotel provides accommodation with free breakfast as part of the room package.
+The accommodation service is the Principal Supply and breakfast is ancillary.
+</p><h3>3. Printing Services</h3><p>
+When a publisher provides content and a printer provides paper, ink, and printing services,
+the main supply is printing service. The transaction is treated as a service supply.
+</p><h2>Mixed Supply Examples</h2><h3>1. Festive Gift Hamper</h3><p>
+A Diwali gift hamper contains chocolates, dry fruits, aerated drinks, and diyas sold together
+for one price.
+</p><p>
+Each product can be purchased independently, making the bundle an artificial combination.
+</p><div class="example-box">
+<h3>Tax Treatment</h3>
+<p>
+The highest GST rate in the bundle applies. Example: Aerated drinks at 28% determine the tax
+rate for the complete hamper.
+</p>
+</div><h3>2. Detergent Powder with Free Bucket</h3><p>
+Detergent powder and a plastic bucket are separate products. Since they can be sold
+independently, the package is treated as a Mixed Supply.
+</p><h3>3. Corporate Executive Gift Set</h3><p>
+A combination of a watch, wallet, tie, and pen sold together is a Mixed Supply because these
+items do not naturally depend on each other.
+</p><h2>Practical Recording in TallyPrime</h2><h2>Part A: Composite Supply Procedure</h2><p>
+In Composite Supply, additional charges such as freight are added to the taxable value of the
+Principal Supply, and the Principal Supply GST rate applies to the complete value.
+</p><h3>Step 1: Configure Service Ledger</h3><ul>
+<li>Go to Gateway of Tally &gt; Create/Alter &gt; Ledger.</li>
+<li>Create ledger: Freight &amp; Forwarding Charges.</li>
+<li>Set GST applicability as Not Applicable.</li>
+<li>Enable inclusion in assessable value calculation for GST.</li>
+<li>Select Appropriate to: Goods.</li>
+<li>Select calculation method: Based on Value.</li>
+</ul><h3>Step 2: Record Composite Sales Voucher</h3><ul>
+<li>Open Sales Voucher using F8.</li>
+<li>Select customer details.</li>
+<li>Enter Principal Stock Item details.</li>
+<li>Add Freight &amp; Forwarding Charges ledger.</li>
+<li>Select CGST and SGST for intra-state or IGST for inter-state supply.</li>
+</ul><h3>Step 3: Verify Tax Calculation</h3><p>
+Use Tax Analysis in TallyPrime to confirm that GST is calculated on the combined assessable
+value.
+</p><div class="example-box">
+<h3>Example Calculation</h3>
+<p>
+Machinery Value: ₹1,00,000<br>
+Freight: ₹5,000<br>
+Total Taxable Value: ₹1,05,000<br>
+GST Rate: 18%<br>
+GST Amount: ₹18,900
+</p>
+</div><h2>Part B: Mixed Supply Procedure</h2><p>
+For Mixed Supply, create a combined kit item using Bill of Materials (BOM) and apply the
+highest GST rate among the components.
+</p><h3>Step 1: Enable BOM</h3><ul>
+<li>Open Stock Item configuration.</li>
+<li>Enable Set Components List (Bill of Materials).</li>
+<li>Enable additional descriptions if required.</li>
+</ul><h3>Step 2: Create Mixed Supply Kit</h3><ul>
+<li>Create individual stock items with GST details.</li>
+<li>Create combo item such as Festive Gift Kit.</li>
+<li>Create BOM named Diwali Combo.</li>
+<li>Add component items like Watch, Wallet, and Drink.</li>
+<li>Assign the highest GST rate to the kit.</li>
+</ul><h3>Step 3: Stock Journal Assembly</h3><ul>
+<li>Open Stock Journal using Alt+F7.</li>
+<li>Select Manufacturing Journal mode.</li>
+<li>Select finished product and BOM.</li>
+<li>Enter quantity to assemble.</li>
+<li>Save the transaction.</li>
+</ul><h3>Step 4: Record Mixed Supply Sale</h3><ul>
+<li>Create Sales Voucher.</li>
+<li>Select the Mixed Supply Kit.</li>
+<li>Enter quantity and rate.</li>
+<li>Apply CGST/SGST or IGST.</li>
+<li>GST is calculated at the highest applicable rate.</li>
+</ul><h2>Statutory Reporting and Return Impact</h2><h3>GSTR-1 Impact</h3><ul>
+<li>Reported under outward supplies.</li>
+<li>Composite Supply is reported under the Principal Supply HSN/SAC code.</li>
+<li>Freight becomes part of the principal item's taxable value.</li>
+<li>Mixed Supply is reported under the kit HSN/SAC code.</li>
+<li>The highest tax rate is applied to the complete package value.</li>
+</ul><h3>GSTR-3B Impact</h3><ul>
+<li>Total taxable value includes the complete invoice amount.</li>
+<li>GST amount is calculated according to Composite or Mixed Supply rules.</li>
+</ul><h2>Troubleshooting and Configuration Fixes</h2><h3>Freight Ledger Applying Wrong GST Rate</h3><p>
+Ensure Freight Ledger GST applicability is set to Not Applicable and included in assessable
+value calculation for GST.
+</p><h3>Incorrect Place of Supply</h3><p>
+Verify party state details and select CGST/SGST for intra-state transactions and IGST for
+inter-state transactions.
+</p><h3>Incorrect Mixed Supply Stock Consumption</h3><p>
+Check BOM configuration, component quantities, and Manufacturing Journal settings to ensure
+correct stock deduction.
+</p><div class="navigation-container">
+    <button>Previous</button>
+    <button>Next</button>
+</div></main><footer class="footer-container">
+    <p>&copy; Notes to HTML</p>
+</footer><script src="js/script.js"></script><script src="js/topic.js"></script></body>
+</html>
